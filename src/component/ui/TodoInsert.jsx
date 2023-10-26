@@ -46,16 +46,24 @@ function TodoInsert( { onPush } ) {
     setValue(e.target.value);
   };
 
-  const handlePush = () => {
-    
+  const handlePush = (e) => {
+    e.prevenDefault();
+
+    if (!value) {
+      alert('할 일을 입력하세요!')
+      return;
+    }
+
+    onPush(value);
+    setValue('');
   };
 
   
 
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handlePush} >
       <InputStyled value={value} onChange={handleChange} placeholder='할 일을 입력하세요.'/>
-      <ButtonStyled >
+      <ButtonStyled type='submit'>
         +
       </ButtonStyled>
     </Wrapper>
