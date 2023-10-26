@@ -47,7 +47,7 @@ function TodoInsert( { onPush } ) {
   };
 
   const handlePush = (e) => {
-    e.prevenDefault();
+    e.preventDefault();
 
     if (!value) {
       alert('할 일을 입력하세요!')
