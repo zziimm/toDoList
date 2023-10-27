@@ -32,13 +32,11 @@ const Mob = styled.div`
   margin: 0 auto;
   margin-top: 2rem;
   border-radius: 4px;
-  /* flex-wrap: wrap; */
   background: white;
 `;
 
 function MainPage(props) {
   const { children } = props;
-  console.log(children);
   return (
     <>
     <TodoMainWarpper>

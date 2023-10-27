@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { styled } from "styled-components";
+import Calendar from "react-calendar";
+import moment from "moment";
+import 'react-calendar/dist/Calendar.css';
 
 const Wrapper = styled.form`
   display: flex;
@@ -41,6 +44,7 @@ const ButtonStyled = styled.button`
 
 function TodoInsert( { onPush } ) {
   const [value, setValue] = useState('');
+  const [choiceDate, setChoiceDate] = useState(new Date());
 
   const handleChange = (e) => {
     setValue(e.target.value);
