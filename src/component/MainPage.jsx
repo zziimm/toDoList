@@ -1,6 +1,10 @@
 import React from 'react';
 import { styled } from "styled-components";
 
+// const MainWarpper = styled.div`
+//   display: flex;
+// `;
+
 const TodoMainWarpper = styled.div`
   width: 512px;
   margin: 0 auto;
@@ -23,13 +27,35 @@ const TodoMainWarpper = styled.div`
   }
 `;
 
+const Mob = styled.div`
+  width: 512px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  border-radius: 4px;
+  /* flex-wrap: wrap; */
+  background: white;
+`;
+
 function MainPage(props) {
   const { children } = props;
+  console.log(children);
   return (
+    <>
     <TodoMainWarpper>
       <div className='app-title'>TO DO</div>
-      <div className='content'>{children}</div>
     </TodoMainWarpper>
+
+    <Mob>
+      <div className='content'>{children}</div>
+    </Mob>
+
+
+
+    {/* <TodoMainWarpper>
+      <div className='app-title'>TO DO</div>
+      <div className='content'>{children}</div>
+    </TodoMainWarpper> */}
+    </>
   );
 }
 

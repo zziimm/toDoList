@@ -62,7 +62,7 @@ function TodoInsert( { onPush } ) {
 
   return (
     <Wrapper onSubmit={handlePush} >
-      <InputStyled value={value} onChange={handleChange} placeholder='할 일을 입력하세요.'/>
+      <InputStyled value={value} onChange={handleChange} placeholder='할 일을 생성하고 처치하세요!'/>
       <ButtonStyled type='submit'>
         +
       </ButtonStyled>
