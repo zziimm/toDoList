@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from "styled-components";
 import { MdClose } from "react-icons/md";
 import { GiChewedSkull, GiCrossedSwords, GiBatMask, GiPin } from "react-icons/gi";
+import ClearListItem from './ClearListItem';
 
 
 
@@ -45,17 +46,20 @@ const ListButton = styled.div`
 `;
 
 function ClearList(props) {
-  // const { todo: { id, text, checked, pin, modal }, onCheckBox, onRemove, onPin, showModal, closeModal } = props;
+  const { todos, onCheckBox } = props;
+
+
   return (
     <ListWrapper>
       <ListButton>
         <GiCrossedSwords />
         완료된 항목
       </ListButton>
+      {todos.map((todo) => {
+        return todo.checked && <ClearListItem key={todo.id} todo={todo} onCheckBox={onCheckBox}/>
+      })}
 
-      <TextArea>
-
-      </TextArea>
+  
     </ListWrapper>
   );
 }

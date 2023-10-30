@@ -15,6 +15,10 @@ const ListItemWrapper = styled.div`
   &:nth-child(even){
     background: #B8D7FF;
   }
+
+  ${props => props.checked && css`
+    display: none;
+  `}
 `;
 
 const ListItemHeader = styled.div`
@@ -50,8 +54,8 @@ const Text = styled.div`
   ${props => props.checked && css`
     text-decoration: line-through;
     color: #B9E2FA;
-  `
-  }
+  `}
+
   &:hover {
     color: #EBFBFF;
   }
@@ -113,7 +117,7 @@ function TodoListItem(props) {
 
 
   return (
-    <ListItemWrapper>
+    <ListItemWrapper checked={checked}>
       <ListItemHeader>
         <BtnSet>
           <CheckBox checked={checked} onClick={() => onCheckBox(id)}>

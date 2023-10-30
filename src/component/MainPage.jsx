@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from "styled-components";
 
 // const MainWarpper = styled.div`
@@ -21,6 +21,15 @@ const TodoMainWarpper = styled.div`
     justify-content: center;
     align-items: center;
   }
+  .app-time {
+    background: #87CEFA;
+    color: white;
+    height: 3rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .content {
     background: white;
@@ -37,10 +46,20 @@ const Mob = styled.div`
 
 function MainPage(props) {
   const { children } = props;
+  const [time, setTime] = useState(new Date());
+
+  // const flowTime = () => {
+  //   setInterval(() => {
+  //     setTime(time)
+  //   }, 1000)
+  // };
+
+
   return (
     <>
     <TodoMainWarpper>
       <div className='app-title'>TO DO</div>
+      <div className='app-time'>{`${time.getHours()} : ${time.getMinutes()}`}</div>
     </TodoMainWarpper>
 
     <Mob>

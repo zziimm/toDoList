@@ -44,7 +44,6 @@ const ButtonStyled = styled.button`
 
 function TodoInsert( { onPush } ) {
   const [value, setValue] = useState('');
-  const [choiceDate, setChoiceDate] = useState(new Date());
 
   const handleChange = (e) => {
     setValue(e.target.value);
