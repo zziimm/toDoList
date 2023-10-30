@@ -19,6 +19,7 @@ const GlovalStyle = createGlobalStyle`
 
 function App() {
   const [todos, setTodos] = useState([ ]);
+  // const [update, setUpdate] = useState('');
 
   const nextId = useRef(1);
 
@@ -40,7 +41,8 @@ function App() {
       id: nextId.current,
       text,
       checked: false,
-      pin: false
+      pin: false,
+      modal: false
     }
 
     setTodos(todos.concat(todo));
@@ -93,6 +95,32 @@ function App() {
   //   setTodos(copytodos)
   // };
 
+  const showModal = (id) => {
+    const todomadal = todos.map((todo) => {
+      return todo.id === id ? {...todo, modal: !todo.modal} : todo;
+    })
+
+    setTodos(todomadal)
+  };
+
+  const closeModal = (id) => {
+    const todomadal = todos.map((todo) => {
+      return todo.id === id ? {...todo, modal: !todo.modal} : todo;
+    })
+
+    setTodos(todomadal)
+  };
+
+  const textUpdate = (id, update) => {
+    const updateText = todos.map((todo) => {
+      return todo.id === id ? {...todo, text: update} : todo;
+    })
+    
+    setTodos(updateText);
+  };
+
+
+
 
 
 
@@ -102,7 +130,7 @@ function App() {
       <MainPage>
         <TodoInsert onPush={handlePush}/>
       </MainPage>
-      <TodoList todos={todos} onCheckBox={handleCheckBox} onRemove={handleRemove} onPin={handlePin} />
+      <TodoList todos={todos} onCheckBox={handleCheckBox} onRemove={handleRemove} onPin={handlePin} showModal={showModal} closeModal={closeModal} textUpdate={textUpdate}/>
     </>
   );
 }

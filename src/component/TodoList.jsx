@@ -23,7 +23,7 @@ const nonPinDiv = styled.div`
 
 
 function TodoList(props) {
-  const { todos, todos:{pin}, onCheckBox, onRemove, onPin } = props;
+  const { todos, todos:{pin, modal}, onCheckBox, onRemove, onPin, showModal, closeModal, textUpdate } = props;
   return (
     <>
       {/* <TodoListWrapper>
@@ -42,12 +42,16 @@ function TodoList(props) {
         <ClearList />
       </TodoListWrapper> */}
 
-      
-        <TodoListWrapper>
+      <TodoListWrapper>
         {todos.map((todo) => {
-          return <TodoListItem key={todo.id} todo={todo} onCheckBox={onCheckBox} onRemove={onRemove} onPin={onPin} />
+          return <TodoListItem key={todo.id} todo={todo} onCheckBox={onCheckBox} onRemove={onRemove} onPin={onPin} onModal={modal} showModal={showModal} closeModal={closeModal} textUpdate={textUpdate} />
         })}
       </TodoListWrapper>
+      <ClearList>
+        {/* {todos.map((todo) => {
+          return <TodoListItem key={todo.id} todo={todo} onCheckBox={onCheckBox} onRemove={onRemove} onPin={onPin} onModal={modal} showModal={showModal} closeModal={closeModal} />
+        })} */}
+      </ClearList>
     </>
   );
 }

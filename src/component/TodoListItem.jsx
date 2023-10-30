@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from "react-icons/ri";
 import { GiChewedSkull, GiCrossedSwords, GiBatMask, GiPin } from "react-icons/gi";
+import Detail from './Detail';
 
 const ListItemWrapper = styled.div`
   width: 250px;
   height: 150px;
   padding: 1rem;
   background: #6495ED;
+  position: relative;
 
 
   &:nth-child(even){
@@ -107,7 +109,7 @@ const PinButton = styled.div`
 `;
 
 function TodoListItem(props) {
-  const { todo: { id, text, checked, pin }, onCheckBox, onRemove, onPin } = props;
+  const { todo: { id, text, checked, pin, modal }, onCheckBox, onRemove, onPin, showModal, closeModal, textUpdate } = props;
 
 
   return (
@@ -128,7 +130,7 @@ function TodoListItem(props) {
       </ListItemHeader>
 
       <TextArea>
-      <Text checked={checked}>
+      <Text checked={checked} onClick={() => showModal(id)} >
         {text}
       </Text>
       </TextArea>
@@ -136,6 +138,8 @@ function TodoListItem(props) {
       <ListItemBottom>
         날짜
       </ListItemBottom>
+
+      {modal && <Detail text={text} id={id} closeModal={closeModal} textUpdate={textUpdate}/>}
 
     </ListItemWrapper>
   );
