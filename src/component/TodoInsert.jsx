@@ -80,7 +80,7 @@ function TodoInsert( { onPush } ) {
       return;
     }
     
-    if ((dateInput !== Number() || dateInput2 !== Number() || dateInput3 !== Number()) || (!dateInput || !dateInput2 || !dateInput3)) {
+    if ((dateInput !== Number() || dateInput2 !== Number() || dateInput3 !== Number()) && (!dateInput || !dateInput2 || !dateInput3)) {
       alert('정확한 날짜를 입력하세요!')
       return;
     }
