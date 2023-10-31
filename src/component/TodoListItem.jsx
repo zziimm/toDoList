@@ -136,7 +136,7 @@ function TodoListItem(props) {
           </PinButton>
         </BtnSet>
         <RemoveButton onClick={() => onRemove(id)}>
-          <GiChewedSkull />
+          <GiChewedSkull preserveAspectRatio="none" />
         </RemoveButton>
 
       </ListItemHeader>

@@ -2,7 +2,8 @@ import React from 'react';
 import { styled } from "styled-components";
 import { GiPin } from "react-icons/gi";
 import PinListItem from './PinListItem';
-
+import { MdBookmark } from "react-icons/md";
+import img1 from '../img/free-icon-bookmarks-1174484.png';
 
 const ListWrapper = styled.div`
   position: relative;
@@ -33,6 +34,18 @@ const TextArea = styled.div`
   font-weight: bold;
   border-radius: 10px 10px 0 0;
 `;
+
+// const BtnBackground = styled.div`
+// svg {
+//   height: 350px;
+//   width: 75px;
+//   color: #5095fc;
+//   position: absolute;
+//   top: -97px;
+//   right: -169px;
+//   transform: rotate(-90deg);
+// }
+// `;
 
 const ListButton = styled.div`
   position: absolute;
