@@ -36,8 +36,8 @@ const TextArea = styled.div`
 `;
 
 const ListItemBottom = styled.div`
-  text-align: end;
-  font-size: 14px;
+  /* text-align: end; */
+  font-size: 12px;
   padding-top: 10px;
 `;
 
@@ -121,7 +121,7 @@ const PinButton = styled.div`
 `;
 
 function TodoListItem(props) {
-  const { todo: { id, text, checked, pin, modal, date }, onCheckBox, onRemove, onPin, showModal, closeModal, textUpdate } = props;
+  const { todo: { id, text, checked, pin, modal, date, dateInput }, onCheckBox, onRemove, onPin, showModal, closeModal, textUpdate } = props;
 
 
   return (
@@ -148,7 +148,7 @@ function TodoListItem(props) {
       </TextArea>
 
       <ListItemBottom>
-        작성일: {date}
+        작성일: {date} 마감일: {dateInput}
       </ListItemBottom>
 
       {modal && <Detail text={text} id={id} closeModal={closeModal} textUpdate={textUpdate}/>}

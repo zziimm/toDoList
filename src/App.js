@@ -21,7 +21,6 @@ const GlovalStyle = createGlobalStyle`
 
 function App() {
   const [todos, setTodos] = useState([ ]);
-  // const [update, setUpdate] = useState('');
 
   const nextId = useRef(1);
 
@@ -37,14 +36,16 @@ function App() {
 
   const creatDate = new Date();
 
-  const handlePush = (text) => {
+  const handlePush = (text, d1, d2, d3) => {
+    const dateIn = new Date(d1, d2, d3)
     const todo = {
       id: nextId.current,
       text,
       checked: false,
       pin: false,
       modal: false,
-      date: `${(creatDate.getMonth()) + 1}월 ${creatDate.getDate()}일`
+      date: `${(creatDate.getMonth()) + 1}월 ${creatDate.getDate()}일`,
+      dateInput: `${dateIn.getFullYear()}년 ${dateIn.getMonth()}월 ${dateIn.getDate()}일`
     }
 
     setTodos(todos.concat(todo));
@@ -66,37 +67,15 @@ function App() {
   };
 
   
-  // 문제임
-  // 배열을 하나 더 만들어서 풀어봐야겠음
-  // 핀 배열 / 클리어 배열
   const handlePin = (id) => {
     const todoPin = todos.map((todo) => {
       return todo.id === id ? {...todo, pin: !todo.pin} : todo;
     })
 
-    // const copytodos = [...todos];
-    // const pick = copytodos.filter((todo) => {
-    //   return todo.id === id;
-    // })
-
-    // copytodos.unshift(...pick)
-    // copytodos.splice(id, 1)
-    // setTodos(copytodos)
     console.log(todoPin);
     setTodos(todoPin);
 
   };
-
-  // const handlePin = (id) => {
-  //   const copytodos = [...todos];
-  //   const pick = copytodos.filter((todo) => {
-  //     return todo.id === id;
-  //   })
-
-  //   copytodos.unshift(...pick)
-  //   console.log(copytodos);
-  //   setTodos(copytodos)
-  // };
 
   const showModal = (id) => {
     const todomadal = todos.map((todo) => {
