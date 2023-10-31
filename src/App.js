@@ -6,6 +6,7 @@ import TodoInsert from "./component/TodoInsert";
 import TodoList from "./component/TodoList";
 import { copy } from "stylis";
 import ClearList from "./component/ClearList";
+import PinList from "./component/PinList";
 
 const GlovalStyle = createGlobalStyle`
   ${reset}
@@ -34,7 +35,7 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-
+  const creatDate = new Date();
 
   const handlePush = (text) => {
     const todo = {
@@ -42,7 +43,8 @@ function App() {
       text,
       checked: false,
       pin: false,
-      modal: false
+      modal: false,
+      date: `${(creatDate.getMonth()) + 1}월 ${creatDate.getDate()}일`
     }
 
     setTodos(todos.concat(todo));
@@ -51,7 +53,7 @@ function App() {
 
   const handleCheckBox = (id) => {
     const todoCheck = todos.map((todo) => {
-      return todo.id === id ? {...todo, checked: !todo.checked} : todo;
+      return todo.id === id ? {...todo, checked: !todo.checked, pin: false} : todo;
     });
     setTodos(todoCheck);
   };
@@ -132,29 +134,12 @@ function App() {
   return (
     <>
       <GlovalStyle />
-      <MainPage>
+      <MainPage todos={todos}>
         <TodoInsert onPush={handlePush}/>
       </MainPage>
       <TodoList todos={todos} onCheckBox={handleCheckBox} onRemove={handleRemove} onPin={handlePin} showModal={showModal} closeModal={closeModal} textUpdate={textUpdate}/>
       <ClearList todos={todos} onCheckBox={handleCheckBox} />
-
-
-
-      {/* <GlovalStyle />
-      <MainPage>
-        <TodoInsert onPush={handlePush}/>
-      </MainPage>
-      {todos.pin
-      ?
-      <TodoList todos={todos} onCheckBox={handleCheckBox} onRemove={handleRemove} onPin={handlePin} showModal={showModal} closeModal={closeModal} textUpdate={textUpdate}/>
-      :
-      <>
-      <MainPage>
-      <TodoInsert onPush={handlePush}/>
-    </MainPage>
-    <TodoList todos={todos} onCheckBox={handleCheckBox} onRemove={handleRemove} onPin={handlePin} showModal={showModal} closeModal={closeModal} textUpdate={textUpdate}/>
-       */}
-      {/* </> */}
+      <PinList todos={todos} onPin={handlePin} onCheckBox={handleCheckBox} />
     </>
   );
 }

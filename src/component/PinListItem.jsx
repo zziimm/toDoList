@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { GiCrossedSwords } from "react-icons/gi";
-
+import styled, { css } from 'styled-components';
+import { GiCrossedSwords, GiPin } from "react-icons/gi";
 
 const ListBox = styled.div`
   width: 100%;
@@ -36,16 +35,17 @@ const Text = styled.div`
   align-items: center;
   font-size: 2rem;
   font-weight: bold;
+
 `;
-
-
-function ClearListItem(props) {
-  const { todo: {id, text}, onCheckBox} = props;
-
+function PinListItem(props) {
+  const { todo: {id, text, checked}, onPin, onCheckBox} = props;
   return (
-    <ListBox>
+    <ListBox checked={checked}>
       <Button onClick={() => {onCheckBox(id)}}>
         <GiCrossedSwords />
+      </Button>
+      <Button onClick={() => {onPin(id)}}>
+        <GiPin />
       </Button>
       <Text>
         {text}
@@ -54,4 +54,4 @@ function ClearListItem(props) {
   );
 }
 
-export default ClearListItem;
+export default PinListItem;

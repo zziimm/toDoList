@@ -1,8 +1,7 @@
 import React from 'react';
 import { styled } from "styled-components";
-import { GiCrossedSwords } from "react-icons/gi";
-import ClearListItem from './ClearListItem';
-
+import { GiPin } from "react-icons/gi";
+import PinListItem from './PinListItem';
 
 
 const ListWrapper = styled.div`
@@ -13,8 +12,8 @@ const ListWrapper = styled.div`
   background-color: #ffffff;
   width: 250px;
   height: 80%;
-  transition: 0.5s left;
   border-radius: 10px;
+  transition: 0.5s left;
 
   &:hover {
     left: 0;
@@ -33,52 +32,45 @@ const TextArea = styled.div`
   justify-content: center;
   font-weight: bold;
   border-radius: 10px 10px 0 0;
-
 `;
 
 const ListButton = styled.div`
   position: absolute;
-  top: 0;
+  top: 60px;
   right: -12.7rem;
   font-size: 2rem;
   display: flex;
   align-items: center;
+
   svg {
     width: 2rem;
     height: 2rem;
   }
 `;
 
+function PinList(props) {
+  const { todos, onPin, onCheckBox } = props;
 
-
-function ClearList(props) {
-  const { todos, onCheckBox } = props;
-
-  const count = 
+  const countPin =
     todos.filter((todo) => {
-      return todo.checked === true;
+      return todo.pin === true;
     }).length;
-
-  const countNon = 
-    todos.filter((todo) => {
-      return todo.checked === false;
-    }).length;
-
 
   return (
     <ListWrapper>
       <TextArea>
-        완료: {count} 미완료: {countNon}
+        반드시 해야지: {countPin} 개
       </TextArea>
+
       <ListButton>
-        <GiCrossedSwords />
-        완료된 항목
+        <GiPin />
+        고정된 항목
       </ListButton>
       {todos.map((todo) => {
-        return todo.checked && <ClearListItem key={todo.id} todo={todo} onCheckBox={onCheckBox}/>
+        return todo.pin && <PinListItem key={todo.id} todo={todo} onPin={onPin} onCheckBox={onCheckBox}/>
       })}
     </ListWrapper>
   );
 }
 
-export default ClearList;
+export default PinList;

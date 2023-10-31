@@ -7,6 +7,7 @@ import 'react-calendar/dist/Calendar.css';
 const Wrapper = styled.form`
   display: flex;
   background: #EBFBFF;
+  border-radius: 10px;
 `;
 
 const InputStyled = styled.input`
@@ -18,6 +19,7 @@ const InputStyled = styled.input`
   line-height: 1.5;
   color: #6495ED;
   flex: 1;
+
 
   &::placeholder {
     color: #84C1C9;
@@ -33,6 +35,7 @@ const ButtonStyled = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 0 10px 10px 0;
   transition: 0.2s background;
 
   &:hover {

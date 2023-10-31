@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from "react-icons/ri";
 import { GiChewedSkull, GiCrossedSwords, GiBatMask, GiPin } from "react-icons/gi";
 import Detail from './Detail';
 
@@ -10,6 +8,7 @@ const ListItemWrapper = styled.div`
   padding: 1rem;
   background: #6495ED;
   position: relative;
+  border-radius: 15px;
 
 
   &:nth-child(even){
@@ -17,6 +16,9 @@ const ListItemWrapper = styled.div`
   }
 
   ${props => props.checked && css`
+    display: none;
+  `}
+  ${props => props.pin && css`
     display: none;
   `}
 `;
@@ -35,6 +37,8 @@ const TextArea = styled.div`
 
 const ListItemBottom = styled.div`
   text-align: end;
+  font-size: 14px;
+  padding-top: 10px;
 `;
 
 const Text = styled.div`
@@ -93,6 +97,10 @@ const RemoveButton = styled.div`
   &:hover {
     color: #ff8787;
   }
+  &:active {
+    background: #EBFBFF;
+    border-radius: 8px;
+  }
 `;
 
 const PinButton = styled.div`
@@ -103,21 +111,21 @@ const PinButton = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: #72292A;
+    color: #96393a;
   }
 
-  ${props => props.pin && css`
+  &:active {
     background: #EBFBFF;
     border-radius: 8px;
-  `}
+  }
 `;
 
 function TodoListItem(props) {
-  const { todo: { id, text, checked, pin, modal }, onCheckBox, onRemove, onPin, showModal, closeModal, textUpdate } = props;
+  const { todo: { id, text, checked, pin, modal, date }, onCheckBox, onRemove, onPin, showModal, closeModal, textUpdate } = props;
 
 
   return (
-    <ListItemWrapper checked={checked}>
+    <ListItemWrapper checked={checked} pin={pin}>
       <ListItemHeader>
         <BtnSet>
           <CheckBox checked={checked} onClick={() => onCheckBox(id)}>
@@ -140,7 +148,7 @@ function TodoListItem(props) {
       </TextArea>
 
       <ListItemBottom>
-        날짜
+        작성일: {date}
       </ListItemBottom>
 
       {modal && <Detail text={text} id={id} closeModal={closeModal} textUpdate={textUpdate}/>}
