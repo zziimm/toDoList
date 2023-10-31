@@ -80,7 +80,10 @@ function TodoInsert( { onPush } ) {
       return;
     }
     
-    if ((dateInput !== Number() || dateInput2 !== Number() || dateInput3 !== Number()) && (!dateInput || !dateInput2 || !dateInput3)) {
+    if (!Number(dateInput) || !Number(dateInput2) || !Number(dateInput3)) {
+      alert('숫자를 입력하세요!')
+      return;
+    } else if (!dateInput || !dateInput2 || !dateInput3) {
       alert('정확한 날짜를 입력하세요!')
       return;
     }
@@ -116,7 +119,7 @@ function TodoInsert( { onPush } ) {
     <Wrapper>
       <InputStyled2 value={dateInput} onChange={saveDate} placeholder='년 4자리' />
       <InputStyled2 value={dateInput2} onChange={saveDate2} placeholder='월' />
-      <InputStyled2 value={dateInput3} onChange={saveDate3} placeholder='일' />
+      <InputStyled2 value={dateInput3} onChange={saveDate3} placeholder='일 까지' />
     </Wrapper>
     </>
   );
